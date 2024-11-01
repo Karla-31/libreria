@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario con Grafico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Crear un Grafico</h1>
+    <form id="graphForm">
+        <button type="button" onclick="generateGraph()">Generar Grafico</button>
+    </form>
+    <canvas id="myChart"></canvas>
+
+    <script>
+        function generateGraph(labels, values) {
+            // Generar el gráfico de ventas utilizando Chart.js
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+                type: "line", // cambiar a "bar" para un gráfico de barras
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Ventas",
+                        data: values,
+                        backgroundColor: "rgba(75, 192, 192, 0.2)",
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Datos de ejemplo de ventas
+        var salesLabels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"];
+        var salesValues = [10, 20, 30, 40, 50, 60];
+
+        generateGraph(salesLabels, salesValues);
+    </script>
+</body>
+</html>
